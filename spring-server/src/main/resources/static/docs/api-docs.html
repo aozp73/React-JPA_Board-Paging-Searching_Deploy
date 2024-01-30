@@ -884,7 +884,7 @@ Host: localhost:8080
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Set-Cookie: refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAbmF2ZXIuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6ImFiYyIsInJvbGUiOiJDT01NT04iLCJpYXQiOjE3MDYyNTA0NjYsImV4cCI6MTcwNjg1NTI2Nn0.MsJK9UNlLnkRI5xYMV0nfyZcuK8SZ2lqJo0Se6JcSrA; Path=/; Max-Age=604800; Expires=Fri, 2 Feb 2024 06:27:46 GMT; HttpOnly; SameSite=Strict
+Set-Cookie: refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAbmF2ZXIuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6ImFiYyIsInJvbGUiOiJDT01NT04iLCJpYXQiOjE3MDY2MTAyMTQsImV4cCI6MTcwNzIxNTAxNH0._4iAOgG6-Zxgn_Tu7wAWD1yLNVXIZ-yNb8Y9XDJsCdQ; Path=/; Max-Age=604800; Expires=Tue, 6 Feb 2024 10:23:34 GMT; HttpOnly; SameSite=Strict
 Content-Type: application/json;charset=UTF-8
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -898,8 +898,8 @@ Content-Length: 589
   "status" : 200,
   "msg" : "성공",
   "data" : {
-    "accessToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAbmF2ZXIuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6ImFiYyIsInJvbGUiOiJDT01NT04iLCJpYXQiOjE3MDYyNTA0NjYsImV4cCI6MTcwNjI1NDA2Nn0.3_r74F32B9ieSI8ntzPpY2vUHulaFtPVqyjNQwSPm1Y",
-    "refreshToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAbmF2ZXIuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6ImFiYyIsInJvbGUiOiJDT01NT04iLCJpYXQiOjE3MDYyNTA0NjYsImV4cCI6MTcwNjg1NTI2Nn0.MsJK9UNlLnkRI5xYMV0nfyZcuK8SZ2lqJo0Se6JcSrA",
+    "accessToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAbmF2ZXIuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6ImFiYyIsInJvbGUiOiJDT01NT04iLCJpYXQiOjE3MDY2MTAyMTQsImV4cCI6MTcwNjYxMzgxNH0.RaJOHQItchQC8WdbRy_ImOxjp4E2Pv5BiBWrcJ1UceI",
+    "refreshToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAbmF2ZXIuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6ImFiYyIsInJvbGUiOiJDT01NT04iLCJpYXQiOjE3MDY2MTAyMTQsImV4cCI6MTcwNzIxNTAxNH0._4iAOgG6-Zxgn_Tu7wAWD1yLNVXIZ-yNb8Y9XDJsCdQ",
     "userId" : 1,
     "username" : "abc",
     "email" : "abc@naver.com"
@@ -1049,14 +1049,10 @@ Content-Length: 105
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /api/auth/logout HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6InRlc3RVc2VyIiwicm9sZSI6IkNPTU1PTiIsImlhdCI6MTcwNjI1MDQ2NiwiZXhwIjoxNzA2MjU0MDY2fQ.0XyZHOhUNmJEKuGGBNFo7eI84_iCEOQCBsjW1aD1vEE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6InRlc3RVc2VyIiwicm9sZSI6IkNPTU1PTiIsImlhdCI6MTcwNjYxMDIxNSwiZXhwIjoxNzA2NjEzODE1fQ.oDvQFvIMq6uwgDyv4fURWTfrA60mM2J2lmJzEt-tIbY
 Accept: application/json
-Content-Length: 36
 Host: localhost:8080
-
-{
-  "refreshToken" : "mockToken"
-}</code></pre>
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBuYXZlci5jb20iLCJ1c2VySWQiOjIsInVzZXJuYW1lIjoidXNlcjEiLCJyb2xlIjoiQ09NTU9OIiwiaWF0IjoxNzA2NjEwMjE1LCJleHAiOjE3MDcyMTUwMTV9.snMttaY-DfmyftmUwKrmtke5WZtz7gEO2_2v_j0DZgw</code></pre>
 </div>
 </div>
 </div>
@@ -1068,6 +1064,7 @@ Host: localhost:8080
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
+Set-Cookie: refreshToken=; Path=/; Max-Age=0; Expires=Thu, 1 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Strict
 Content-Type: application/json;charset=UTF-8
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -1091,11 +1088,9 @@ Content-Length: 61
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/auth/logout' -i -X DELETE \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6InRlc3RVc2VyIiwicm9sZSI6IkNPTU1PTiIsImlhdCI6MTcwNjI1MDQ2NiwiZXhwIjoxNzA2MjU0MDY2fQ.0XyZHOhUNmJEKuGGBNFo7eI84_iCEOQCBsjW1aD1vEE' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6InRlc3RVc2VyIiwicm9sZSI6IkNPTU1PTiIsImlhdCI6MTcwNjYxMDIxNSwiZXhwIjoxNzA2NjEzODE1fQ.oDvQFvIMq6uwgDyv4fURWTfrA60mM2J2lmJzEt-tIbY' \
     -H 'Accept: application/json' \
-    -d '{
-  "refreshToken" : "mockToken"
-}'</code></pre>
+    --cookie 'refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBuYXZlci5jb20iLCJ1c2VySWQiOjIsInVzZXJuYW1lIjoidXNlcjEiLCJyb2xlIjoiQ09NTU9OIiwiaWF0IjoxNzA2NjEwMjE1LCJleHAiOjE3MDcyMTUwMTV9.snMttaY-DfmyftmUwKrmtke5WZtz7gEO2_2v_j0DZgw'</code></pre>
 </div>
 </div>
 </div>
@@ -1108,14 +1103,10 @@ Content-Length: 61
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /api/auth/logout HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6InRlc3RVc2VyIiwicm9sZSI6IkNPTU1PTiIsImlhdCI6MTcwNjI1MDQ2NiwiZXhwIjoxNzA2MjU0MDY2fQ.0XyZHOhUNmJEKuGGBNFo7eI84_iCEOQCBsjW1aD1vEE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6InRlc3RVc2VyIiwicm9sZSI6IkNPTU1PTiIsImlhdCI6MTcwNjYxMDIxNSwiZXhwIjoxNzA2NjEzODE1fQ.oDvQFvIMq6uwgDyv4fURWTfrA60mM2J2lmJzEt-tIbY
 Accept: application/json
-Content-Length: 37
 Host: localhost:8080
-
-{
-  "refreshToken" : "wrongToken"
-}</code></pre>
+Cookie: refreshToken=wrong</code></pre>
 </div>
 </div>
 </div>
@@ -1123,7 +1114,7 @@ Host: localhost:8080
 <h5 id="_response_example_11">Response Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 401 Unauthorized
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 400 Bad Request
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
@@ -1134,12 +1125,12 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 91
+Content-Length: 134
 
 {
-  "status" : 401,
-  "msg" : "unAuthorized",
-  "data" : "잘못된 접근입니다."
+  "status" : 400,
+  "msg" : "badRequest",
+  "data" : "RefreshToken 오류 (만료, 잘못된 형식 등, 재로그인 필요)"
 }</code></pre>
 </div>
 </div>
@@ -1150,11 +1141,9 @@ Content-Length: 91
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/auth/logout' -i -X DELETE \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6InRlc3RVc2VyIiwicm9sZSI6IkNPTU1PTiIsImlhdCI6MTcwNjI1MDQ2NiwiZXhwIjoxNzA2MjU0MDY2fQ.0XyZHOhUNmJEKuGGBNFo7eI84_iCEOQCBsjW1aD1vEE' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6InRlc3RVc2VyIiwicm9sZSI6IkNPTU1PTiIsImlhdCI6MTcwNjYxMDIxNSwiZXhwIjoxNzA2NjEzODE1fQ.oDvQFvIMq6uwgDyv4fURWTfrA60mM2J2lmJzEt-tIbY' \
     -H 'Accept: application/json' \
-    -d '{
-  "refreshToken" : "wrongToken"
-}'</code></pre>
+    --cookie 'refreshToken=wrong'</code></pre>
 </div>
 </div>
 </div>
@@ -1191,7 +1180,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 1978
+Content-Length: 2054
 
 {
   "status" : 200,
@@ -1251,33 +1240,36 @@ Content-Length: 1978
       } ],
       "pageable" : {
         "sort" : {
-          "sorted" : false,
+          "empty" : true,
           "unsorted" : true,
-          "empty" : true
+          "sorted" : false
         },
-        "pageSize" : 5,
-        "pageNumber" : 0,
         "offset" : 0,
-        "unpaged" : false,
-        "paged" : true
+        "pageNumber" : 0,
+        "pageSize" : 5,
+        "paged" : true,
+        "unpaged" : false
       },
       "last" : false,
       "totalPages" : 2,
       "totalElements" : 7,
+      "size" : 5,
       "number" : 0,
       "sort" : {
-        "sorted" : false,
+        "empty" : true,
         "unsorted" : true,
-        "empty" : true
+        "sorted" : false
       },
-      "numberOfElements" : 5,
       "first" : true,
-      "size" : 5,
+      "numberOfElements" : 5,
       "empty" : false
     },
     "pageInfo" : {
+      "currentPage" : 1,
       "startPage" : 1,
-      "endPage" : 2
+      "endPage" : 2,
+      "isFirst" : true,
+      "isLast" : false
     }
   }
 }</code></pre>
@@ -1321,7 +1313,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 1249
+Content-Length: 2054
 
 {
   "status" : 200,
@@ -1329,9 +1321,29 @@ Content-Length: 1249
   "data" : {
     "boardList" : {
       "content" : [ {
-        "boardId" : 2,
-        "title" : "제목2",
-        "views" : 20,
+        "boardId" : 7,
+        "title" : "제목7",
+        "views" : 70,
+        "createdAt" : "2022/02/12",
+        "commentCount" : 1,
+        "user" : {
+          "userId" : 2,
+          "username" : "user2"
+        }
+      }, {
+        "boardId" : 6,
+        "title" : "제목6",
+        "views" : 60,
+        "createdAt" : "2022/02/12",
+        "commentCount" : 0,
+        "user" : {
+          "userId" : 2,
+          "username" : "user2"
+        }
+      }, {
+        "boardId" : 5,
+        "title" : "제목5",
+        "views" : 50,
         "createdAt" : "2022/02/12",
         "commentCount" : 0,
         "user" : {
@@ -1339,11 +1351,21 @@ Content-Length: 1249
           "username" : "user1"
         }
       }, {
-        "boardId" : 1,
-        "title" : "제목1",
-        "views" : 10,
+        "boardId" : 4,
+        "title" : "제목4",
+        "views" : 40,
         "createdAt" : "2022/02/12",
-        "commentCount" : 1,
+        "commentCount" : 0,
+        "user" : {
+          "userId" : 1,
+          "username" : "user1"
+        }
+      }, {
+        "boardId" : 3,
+        "title" : "제목3",
+        "views" : 30,
+        "createdAt" : "2022/02/12",
+        "commentCount" : 0,
         "user" : {
           "userId" : 1,
           "username" : "user1"
@@ -1351,33 +1373,36 @@ Content-Length: 1249
       } ],
       "pageable" : {
         "sort" : {
-          "sorted" : false,
+          "empty" : true,
           "unsorted" : true,
-          "empty" : true
+          "sorted" : false
         },
+        "offset" : 0,
+        "pageNumber" : 0,
         "pageSize" : 5,
-        "pageNumber" : 1,
-        "offset" : 5,
-        "unpaged" : false,
-        "paged" : true
+        "paged" : true,
+        "unpaged" : false
       },
-      "last" : true,
+      "last" : false,
       "totalPages" : 2,
       "totalElements" : 7,
-      "number" : 1,
-      "sort" : {
-        "sorted" : false,
-        "unsorted" : true,
-        "empty" : true
-      },
-      "numberOfElements" : 2,
-      "first" : false,
       "size" : 5,
+      "number" : 0,
+      "sort" : {
+        "empty" : true,
+        "unsorted" : true,
+        "sorted" : false
+      },
+      "first" : true,
+      "numberOfElements" : 5,
       "empty" : false
     },
     "pageInfo" : {
+      "currentPage" : 1,
       "startPage" : 1,
-      "endPage" : 2
+      "endPage" : 2,
+      "isFirst" : true,
+      "isLast" : false
     }
   }
 }</code></pre>
@@ -1421,7 +1446,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 1977
+Content-Length: 2052
 
 {
   "status" : 200,
@@ -1481,33 +1506,36 @@ Content-Length: 1977
       } ],
       "pageable" : {
         "sort" : {
-          "sorted" : false,
+          "empty" : true,
           "unsorted" : true,
-          "empty" : true
+          "sorted" : false
         },
-        "pageSize" : 5,
-        "pageNumber" : 0,
         "offset" : 0,
-        "unpaged" : false,
-        "paged" : true
+        "pageNumber" : 0,
+        "pageSize" : 5,
+        "paged" : true,
+        "unpaged" : false
       },
       "last" : true,
       "totalPages" : 1,
       "totalElements" : 5,
+      "size" : 5,
       "number" : 0,
       "sort" : {
-        "sorted" : false,
+        "empty" : true,
         "unsorted" : true,
-        "empty" : true
+        "sorted" : false
       },
-      "numberOfElements" : 5,
       "first" : true,
-      "size" : 5,
+      "numberOfElements" : 5,
       "empty" : false
     },
     "pageInfo" : {
+      "currentPage" : 1,
       "startPage" : 1,
-      "endPage" : 1
+      "endPage" : 1,
+      "isFirst" : true,
+      "isLast" : true
     }
   }
 }</code></pre>
@@ -1530,7 +1558,7 @@ Content-Length: 1977
 <h5 id="_request_example_15">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/board/1 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/authOptional/board/1 HTTP/1.1
 Accept: application/json
 Host: localhost:8080</code></pre>
 </div>
@@ -1551,7 +1579,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 807
+Content-Length: 834
 
 {
   "status" : 200,
@@ -1563,6 +1591,7 @@ Content-Length: 807
       "content" : "내용1",
       "views" : 11,
       "createdAt" : "2022.02.12 10:10:10",
+      "editable" : false,
       "commentCount" : 2,
       "user" : {
         "userId" : 1,
@@ -1597,7 +1626,7 @@ Content-Length: 807
 <h5 id="_curl_15">Curl</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/board/1' -i -X GET \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/authOptional/board/1' -i -X GET \
     -H 'Accept: application/json'</code></pre>
 </div>
 </div>
@@ -1609,7 +1638,7 @@ Content-Length: 807
 <h5 id="_request_example_16">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/board/2 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/authOptional/board/2 HTTP/1.1
 Accept: application/json
 Host: localhost:8080</code></pre>
 </div>
@@ -1644,7 +1673,7 @@ Content-Length: 100
 <h5 id="_curl_16">Curl</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/board/2' -i -X GET \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/authOptional/board/2' -i -X GET \
     -H 'Accept: application/json'</code></pre>
 </div>
 </div>
@@ -1656,7 +1685,7 @@ Content-Length: 100
 <h5 id="_request_example_17">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/board/2 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/authOptional/board/2 HTTP/1.1
 Accept: application/json
 Host: localhost:8080</code></pre>
 </div>
@@ -1691,7 +1720,7 @@ Content-Length: 100
 <h5 id="_curl_17">Curl</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/board/2' -i -X GET \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/authOptional/board/2' -i -X GET \
     -H 'Accept: application/json'</code></pre>
 </div>
 </div>
@@ -1731,7 +1760,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 377
+Content-Length: 403
 
 {
   "status" : 200,
@@ -1742,7 +1771,8 @@ Content-Length: 377
       "title" : "제목1",
       "content" : "내용1",
       "views" : 0,
-      "createdAt" : "2024.01.26 15:27:39",
+      "createdAt" : "2024.01.30 19:23:24",
+      "editable" : true,
       "commentCount" : 0,
       "user" : {
         "userId" : 1,
@@ -2107,26 +2137,12 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 392
+Content-Length: 61
 
 {
   "status" : 200,
   "msg" : "성공",
-  "data" : {
-    "boardDetailDTO" : {
-      "boardId" : 1,
-      "title" : "수정 제목1",
-      "content" : "수정 내용1",
-      "views" : 10,
-      "createdAt" : "2022.02.12 10:10:10",
-      "commentCount" : 0,
-      "user" : {
-        "userId" : 1,
-        "username" : "user1"
-      }
-    },
-    "commentListDTOS" : [ ]
-  }
+  "data" : null
 }</code></pre>
 </div>
 </div>
@@ -2274,7 +2290,7 @@ Content-Length: 656
     "commentId" : 3,
     "content" : "저장 댓글1",
     "editable" : true,
-    "createdAt" : "2024.01.26 15:27:40",
+    "createdAt" : "2024.01.30 19:23:25",
     "user" : {
       "userId" : 1,
       "username" : "user1"

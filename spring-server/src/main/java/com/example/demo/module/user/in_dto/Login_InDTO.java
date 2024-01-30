@@ -1,6 +1,5 @@
 package com.example.demo.module.user.in_dto;
 
-import com.example.demo.module.user.valid.join_InDTO.ValidPassword;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;

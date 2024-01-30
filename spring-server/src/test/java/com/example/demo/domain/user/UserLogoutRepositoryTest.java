@@ -2,10 +2,13 @@ package com.example.demo.domain.user;
 
 import com.example.demo.module.refreshtoken.RefreshToken;
 import com.example.demo.module.refreshtoken.RefreshTokenRepository;
+import com.redis.testcontainers.RedisContainer;
+
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.redis.DataRedisTest;
-import redis.embedded.RedisServer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.utility.DockerImageName;
 
 import java.util.Optional;
 
@@ -16,7 +19,10 @@ public class UserLogoutRepositoryTest {
 
     @Autowired
     private RefreshTokenRepository refreshTokenRepository;
-    private static RedisServer redisServer;
+
+    @Container
+    static RedisContainer redisContainer = new RedisContainer(DockerImageName.parse("redis:7.0.8-alpine"))
+            .withExposedPorts(6379);
 
     @BeforeEach
     public void init() {
@@ -28,17 +34,6 @@ public class UserLogoutRepositoryTest {
          * - RefreshToken Entity 1건
          */
         setUp_refreshToken(1L, "mockToken");
-    }
-
-    @BeforeAll
-    public static void startRedis() {
-        redisServer = new RedisServer(6380);
-        redisServer.start();
-    }
-
-    @AfterAll
-    public static void stopRedis() {
-        redisServer.stop();
     }
 
     @Test

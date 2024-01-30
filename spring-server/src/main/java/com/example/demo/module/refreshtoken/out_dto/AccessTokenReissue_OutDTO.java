@@ -1,7 +1,6 @@
 package com.example.demo.module.refreshtoken.out_dto;
 
 import com.example.demo.module.user.User;
-import com.example.demo.module.user.out_dto.Login_OutDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

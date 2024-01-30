@@ -1,8 +1,7 @@
 version: "3"
 services:
-
   database-redis:
-  container_name: database-redis
+    container_name: database-redis
     image: redis:6.2.6-alpine
     ports:
       - 6379:6379
@@ -40,8 +39,8 @@ services:
   spring_app:
     build:
       context: ./spring-server
-      dockerfile: Dockerfile 
-    container_name: server
+      dockerfile: Dockerfile
+    container_name: spring_app
     image: ${DOCKERHUB_USERNAME}/react-toy-server-spring:${TAG_VERSION}
     ports:
       - "8080:8080"
@@ -57,13 +56,13 @@ services:
     networks:
       - network
 
-  react_app: 
-    build: 
+  react_app:
+    build:
       context: ./react-client
-      dockerfile: Dockerfile 
-    container_name: "react_app" 
+      dockerfile: Dockerfile
+    container_name: "react_app"
     image: ${DOCKERHUB_USERNAME}/react-toy-client-react:${TAG_VERSION}
-    ports: 
+    ports:
       - "3000:3000"
     depends_on:
       - spring_app

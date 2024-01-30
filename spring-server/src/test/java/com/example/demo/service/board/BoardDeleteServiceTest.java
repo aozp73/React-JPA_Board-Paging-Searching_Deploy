@@ -5,11 +5,12 @@ import com.example.demo.exception.statuscode.Exception404;
 import com.example.demo.module.board.Board;
 import com.example.demo.module.board.BoardRepository;
 import com.example.demo.module.board.BoardService;
+import com.example.demo.module.comment.Comment;
 import com.example.demo.module.comment.CommentRepository;
 import com.example.demo.module.user.User;
-import com.example.demo.module.user.UserRepository;
 import com.example.demo.module.user.enums.UserRole;
 import com.example.demo.util.DummyEntityHelper;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,6 +18,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,7 +32,10 @@ public class BoardDeleteServiceTest {
     @InjectMocks
     private BoardService boardService;
 
-    @Mock private BoardRepository boardRepository;
+    @Mock
+    private BoardRepository boardRepository;
+    @Mock
+    private CommentRepository commentRepository;
 
     @Test
     @DisplayName("게시글 삭제 성공")
@@ -41,7 +47,12 @@ public class BoardDeleteServiceTest {
         User userEntity = DummyEntityHelper.setUpUser(1L, "user1@naver.com", "user1", "abc1", UserRole.COMMON);
         Board boardEntity = DummyEntityHelper.setUpBoard(1L, userEntity, "제목1", "내용1", 10);
 
+        List<Comment> commentEntityList = new ArrayList<>();
+        Comment commentEntity = DummyEntityHelper.setUpComment(1L, userEntity, boardEntity, "내용1");
+        commentEntityList.add(commentEntity);
+
         when(boardRepository.findById(any(Long.class))).thenReturn(Optional.of(boardEntity));
+        when(commentRepository.findByBoardId(any(Long.class))).thenReturn(commentEntityList);
 
         // when
         boardService.delete(boardId, userId);
@@ -60,11 +71,8 @@ public class BoardDeleteServiceTest {
 
         when(boardRepository.findById(any(Long.class))).thenReturn(Optional.empty());
 
-
         // when & then
-        Exception404 exception404 = assertThrows(Exception404.class, () ->
-                boardService.delete(boardId, userId)
-        );
+        Exception404 exception404 = assertThrows(Exception404.class, () -> boardService.delete(boardId, userId));
         assertEquals(exception404.getMessage(), "게시물이 존재하지 않습니다.");
 
         verify(boardRepository).findById(any(Long.class));
@@ -84,9 +92,7 @@ public class BoardDeleteServiceTest {
         when(boardRepository.findById(any(Long.class))).thenReturn(Optional.of(boardEntity));
 
         // when & then
-        Exception401 exception401 = assertThrows(Exception401.class, () ->
-                boardService.delete(boardId, userId)
-        );
+        Exception401 exception401 = assertThrows(Exception401.class, () -> boardService.delete(boardId, userId));
         assertEquals(exception401.getMessage(), "작성자만 삭제할 수 있습니다.");
 
         verify(boardRepository).findById(any(Long.class));

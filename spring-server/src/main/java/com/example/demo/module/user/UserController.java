@@ -4,25 +4,22 @@ import com.example.demo.config.security.jwt.MyJwtProvider;
 import com.example.demo.config.security.principal.MyUserDetails;
 import com.example.demo.exception.ResponseDTO;
 import com.example.demo.exception.statuscode.Exception400;
-import com.example.demo.module.refreshtoken.in_dto.RefreshToken_inDTO;
 import com.example.demo.module.user.in_dto.Join_InDTO;
 import com.example.demo.module.user.in_dto.Login_InDTO;
 import com.example.demo.module.user.out_dto.Login_OutDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
-@RequiredArgsConstructor @Slf4j
+@RequiredArgsConstructor
+@Slf4j
 @RequestMapping("/api")
 public class UserController {
 
@@ -49,7 +46,8 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody @Valid Login_InDTO loginInDTO, HttpServletResponse response) {
         log.debug(("로그인 요청 - POST, Controller"));
         // Redis 저장: RefreshToken (AccessToken 재발급 검증)
-        // 응답 데이터: AccessToken / userId (클라이언트 수정,삭제 렌더링) / username (Header 렌더링) / email
+        // 응답 데이터: AccessToken / userId (클라이언트 수정,삭제 렌더링) / username (Header 렌더링) /
+        // email
         Login_OutDTO loginOutDTO = userService.login(loginInDTO);
 
         // Set-Cookie: RefreshToken
@@ -60,7 +58,7 @@ public class UserController {
 
     @DeleteMapping("/auth/logout")
     public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response,
-                                    @AuthenticationPrincipal MyUserDetails myUserDetails) {
+            @AuthenticationPrincipal MyUserDetails myUserDetails) {
         log.debug(("로그아웃 요청 - DELETE, Controller"));
 
         // refreshToken 추출 및 값 확인

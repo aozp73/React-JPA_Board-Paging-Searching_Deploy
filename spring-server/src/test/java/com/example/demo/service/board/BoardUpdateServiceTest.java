@@ -5,8 +5,6 @@ import com.example.demo.module.board.Board;
 import com.example.demo.module.board.BoardRepository;
 import com.example.demo.module.board.BoardService;
 import com.example.demo.module.board.in_dto.BoardUpdate_InDTO;
-import com.example.demo.module.board.out_dto.BoardDetailFlatDTO;
-import com.example.demo.module.board.out_dto.BoardDetail_OutDTO;
 import com.example.demo.module.user.User;
 import com.example.demo.module.user.UserRepository;
 import com.example.demo.module.user.enums.UserRole;
@@ -18,7 +16,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,7 +43,6 @@ public class BoardUpdateServiceTest {
 
         when(boardRepository.findById(any(Long.class))).thenReturn(Optional.of(boardEntity));
         when(userRepository.findById(any(Long.class))).thenReturn(Optional.of(userEntity));
-        when(boardRepository.findBoardDetailWithUserForDetail(any(Long.class))).thenReturn(make_BoardDetailFlatDTO());
 
         // when
         boardService.update(boardUpdateInDTO, 1L);
@@ -54,14 +50,14 @@ public class BoardUpdateServiceTest {
         // then
         verify(userRepository).findById(any(Long.class));
         verify(boardRepository).findById(any(Long.class));
-        verify(boardRepository).findBoardDetailWithUserForDetail(any(Long.class));
     }
 
     @Test
     @DisplayName("게시글 수정 실패 - 타 작성자의 게시글")
     public void update_NotMatchWriter_FailTest() {
         // given
-        BoardUpdate_InDTO boardUpdateInDTO = BoardUpdate_InDTO.builder().id(1L).title("수정 제목1").content("수정 내용1").build();
+        BoardUpdate_InDTO boardUpdateInDTO = BoardUpdate_InDTO.builder().id(1L).title("수정 제목1").content("수정 내용1")
+                .build();
         User userEntity = DummyEntityHelper.setUpUser(1L, "user1@naver.com", "user1", "abc1", UserRole.COMMON);
         Board boardEntity = DummyEntityHelper.setUpBoard(1L, userEntity, "제목1", "내용1", 10);
 
@@ -83,21 +79,6 @@ public class BoardUpdateServiceTest {
                 .id(1L)
                 .title("제목1")
                 .content("내용1")
-                .build();
-    }
-
-    private BoardDetailFlatDTO make_BoardDetailFlatDTO() {
-
-        return BoardDetailFlatDTO.builder()
-                .boardId(1L)
-                .title("수정 제목1")
-                .content("수정 내용1")
-                .views(10)
-                .createdAt(LocalDateTime.now())
-                .commentCount(0L)
-
-                .userId(1L)
-                .username("user1")
                 .build();
     }
 }
