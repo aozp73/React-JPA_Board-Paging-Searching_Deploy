@@ -1,0 +1,61 @@
+version: "3"
+services:
+
+  database-redis:
+  container_name: database-redis
+    image: redis:6.2.6-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/data:/data
+      - ./redis/conf/redis.conf:/usr/local/conf/redis.conf
+    labels:
+      - "name=redis"
+      - "mode=standalone"
+    restart: always
+    networks:
+      - network
+
+  database-mysql:
+    build:
+      context: ./database/mysql
+      dockerfile: Dockerfile
+    container_name: database-mysql
+    image: ${DOCKERHUB_USERNAME}/portfolio-db-mysql:${TAG_VERSION}
+    volumes:
+      - ./db/mysql/store:/var/lib/mysql
+    environment:
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    ports:
+      - "3306:3306"
+    restart: always
+    depends_on:
+      - database-redis
+    networks:
+      - network
+
+  spring_app:
+    build:
+      context: ./spring-server
+      dockerfile: Dockerfile 
+    container_name: server
+    image: ${DOCKERHUB_USERNAME}/portfolio-server:${TAG_VERSION}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database-mysql
+    environment:
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - JWT_ACCESS_KEY=${JWT_ACCESS_KEY}
+      - JWT_REFRESH_KEY=${JWT_REFRESH_KEY}
+    networks:
+      - network
+
+networks:
+  network:
