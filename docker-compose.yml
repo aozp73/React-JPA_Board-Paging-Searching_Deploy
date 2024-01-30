@@ -21,7 +21,7 @@ services:
       context: ./database/mysql
       dockerfile: Dockerfile
     container_name: database-mysql
-    image: ${DOCKERHUB_USERNAME}/portfolio-db-mysql:${TAG_VERSION}
+    image: ${DOCKERHUB_USERNAME}/react-toy-db-mysql:${TAG_VERSION}
     volumes:
       - ./db/mysql/store:/var/lib/mysql
     environment:
@@ -42,7 +42,7 @@ services:
       context: ./spring-server
       dockerfile: Dockerfile 
     container_name: server
-    image: ${DOCKERHUB_USERNAME}/portfolio-server:${TAG_VERSION}
+    image: ${DOCKERHUB_USERNAME}/react-toy-server-spring:${TAG_VERSION}
     ports:
       - "8080:8080"
     depends_on:
@@ -54,6 +54,19 @@ services:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - JWT_ACCESS_KEY=${JWT_ACCESS_KEY}
       - JWT_REFRESH_KEY=${JWT_REFRESH_KEY}
+    networks:
+      - network
+
+  react_app: 
+    build: 
+      context: ./react-client
+      dockerfile: Dockerfile 
+    container_name: "react_app" 
+    image: ${DOCKERHUB_USERNAME}/react-toy-client-react:${TAG_VERSION}
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - spring_app
     networks:
       - network
 

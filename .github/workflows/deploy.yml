@@ -1,0 +1,73 @@
+name: ProtoType - Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Build-and-Push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .env file
+        run: |
+          echo "TAG_VERSION=${{ secrets.TAG_VERSION }}" >> .env
+          echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> .env
+
+          echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> .env
+          echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> .env
+          echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> .env
+          echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
+
+          echo "JWT_ACCESS_KEY=${{ secrets.JWT_ACCESS_KEY }}" >> .env
+          echo "JWT_REFRESH_KEY=${{ secrets.JWT_REFRESH_KEY }}" >> .env
+
+      - name: Login to DockerHub
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Build and push Docker image
+        run: |
+          docker-compose build
+          docker-compose push
+
+#   Deploy-EC2:
+#     runs-on: ubuntu-latest
+#     needs: Build-and-Push
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
+
+#       - name: Copy docker-compose.yml to EC2
+#         uses: appleboy/scp-action@master
+#         with:
+#           key: ${{ secrets.EC2_SSH_KEY }}
+#           host: ${{ secrets.EC2_HOST }}
+#           username: ubuntu
+#           source: "./docker-compose.yml"
+#           target: "/myconfig/compose/"
+
+#       - name: Deploy to EC2
+#         uses: appleboy/ssh-action@v0.1.6
+#         with:
+#           key: ${{ secrets.EC2_SSH_KEY }}
+#           host: ${{ secrets.EC2_HOST }}
+#           username: ubuntu
+#           script: |
+#             cd /myconfig/compose
+
+#             echo "TAG_VERSION=${{ secrets.TAG_VERSION }}" >> .env
+#             echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> .env
+
+#             echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> .env
+#             echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> .env
+#             echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> .env
+#             echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
+
+#             echo "JWT_ACCESS_KEY=${{ secrets.JWT_ACCESS_KEY }}" >> .env
+#             echo "JWT_REFRESH_KEY=${{ secrets.JWT_REFRESH_KEY }}" >> .env
+
+#             sudo docker-compose pull && sudo docker-compose up -d
