@@ -1,0 +1,34 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: utf-8
+      force: true
+
+spring:
+  redis: # jwt refresh token 저장
+    host: localhost
+    port: 6380
+
+  output:
+    ansi:
+      enabled: always
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    #      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    show-sql: true
+
+logging:
+  level: # TRACE > DEBUG > INFO > WARN > ERROR
+    com.example.demo.module: debug
+
+my:
+  jwt:
+    access-key: ${JWT_ACCESS_KEY}
+    refresh-key: ${JWT_REFRESH_KEY}
