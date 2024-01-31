@@ -36,7 +36,7 @@ services:
       - network
 
   spring-app:
-    container_name: spring_app
+    container_name: spring-app
     depends_on:
       - database-mysql
     build:
@@ -70,6 +70,9 @@ services:
     networks:
       - network
 
+networks:
+  network:
+
   # react-app:
   #   container_name: "react-app"
   #   depends_on:
@@ -83,6 +86,3 @@ services:
   #     - "3000:3000"
   #   networks:
   #     - network
-
-networks:
-  network:

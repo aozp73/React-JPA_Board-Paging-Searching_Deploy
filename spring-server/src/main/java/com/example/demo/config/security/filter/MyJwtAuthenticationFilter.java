@@ -27,7 +27,7 @@ public class MyJwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-                                    FilterChain filterChain) throws IOException {
+            FilterChain filterChain) throws IOException {
         String token = "";
         try {
             token = getToken(request);
@@ -35,19 +35,21 @@ public class MyJwtAuthenticationFilter extends OncePerRequestFilter {
                 setAuthentication(token);
             }
             filterChain.doFilter(request, response);
-        }
-        catch (NullPointerException | IllegalStateException e) {
-            MySecurityUtil.handleExceptionResponse(response, "Token Exception: NOT_FOUND_TOKEN", HttpServletResponse.SC_BAD_REQUEST);
+        } catch (NullPointerException | IllegalStateException e) {
+            MySecurityUtil.handleExceptionResponse(response, request, "Token Exception: NOT_FOUND_TOKEN",
+                    HttpServletResponse.SC_BAD_REQUEST);
 
         } catch (SecurityException | MalformedJwtException e) {
-            MySecurityUtil.handleExceptionResponse(response, "Token Exception: INVALID_TOKEN", HttpServletResponse.SC_BAD_REQUEST);
+            MySecurityUtil.handleExceptionResponse(response, request, "Token Exception: INVALID_TOKEN",
+                    HttpServletResponse.SC_BAD_REQUEST);
 
         } catch (ExpiredJwtException e) {
-            MySecurityUtil.handleExceptionResponse(response, "Token Exception: EXPIRED_TOKEN", HttpServletResponse.SC_BAD_REQUEST);
-
+            MySecurityUtil.handleExceptionResponse(response, request, "Token Exception: EXPIRED_TOKEN",
+                    HttpServletResponse.SC_BAD_REQUEST);
 
         } catch (UnsupportedJwtException e) {
-            MySecurityUtil.handleExceptionResponse(response, "Token Exception: UNSUPPORTED_TOKEN", HttpServletResponse.SC_BAD_REQUEST);
+            MySecurityUtil.handleExceptionResponse(response, request, "Token Exception: UNSUPPORTED_TOKEN",
+                    HttpServletResponse.SC_BAD_REQUEST);
 
         } catch (Exception e) {
             log.error("====================================================");
@@ -56,13 +58,14 @@ public class MyJwtAuthenticationFilter extends OncePerRequestFilter {
             log.error("Exception Message : ", e);
             log.error("====================================================");
 
-            MySecurityUtil.handleExceptionResponse(response, "Token Exception: JWT ETCException", HttpServletResponse.SC_BAD_REQUEST);
+            MySecurityUtil.handleExceptionResponse(response, request, "Token Exception: JWT ETCException",
+                    HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 
     private String getToken(HttpServletRequest request) {
         String authorization = request.getHeader("Authorization");
-        if (StringUtils.hasText(authorization) && authorization.startsWith("Bearer")){
+        if (StringUtils.hasText(authorization) && authorization.startsWith("Bearer")) {
             String[] arr = authorization.split(" ");
             return arr[1];
         }
@@ -86,4 +89,3 @@ public class MyJwtAuthenticationFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }
-

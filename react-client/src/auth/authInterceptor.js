@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const api = axios.create({
-  baseURL: "http://localhost:8080/api/auth",
+  baseURL: "/api/auth",
 });
 
 // 요청 인터셉터
@@ -39,7 +39,7 @@ api.interceptors.response.use(
       console.log("AccessToken 만료 - RefreshToken으로 재발급");
 
       try {
-        const res = await axios.get("http://localhost:8080/api/refreshToken", {
+        const res = await axios.get("/api/refreshToken", {
           withCredentials: true,
         });
         const { accessToken, userId, email, username } = res.data.data;

@@ -4,7 +4,6 @@ import com.example.demo.config.security.filter.MyJwtAuthenticationFilter;
 import com.example.demo.config.security.jwt.MyJwtProvider;
 import com.example.demo.util.MySecurityUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,7 +17,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.servlet.http.HttpServletResponse;
 
-@Slf4j
 @RequiredArgsConstructor
 @Configuration
 public class MySecurityConfig {
@@ -35,16 +33,18 @@ public class MySecurityConfig {
     public MyJwtAuthenticationFilter myJwtAuthenticationFilter() {
         return new MyJwtAuthenticationFilter(myJwtProvider);
     }
-    
+
     @Bean
     SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
         http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
-            MySecurityUtil.handleExceptionResponse(response, "Authentication Fail", HttpServletResponse.SC_BAD_REQUEST);
+            MySecurityUtil.handleExceptionResponse(response, request, "Authentication Fail",
+                    HttpServletResponse.SC_BAD_REQUEST);
         });
 
         http.exceptionHandling().accessDeniedHandler((request, response, accessDeniedException) -> {
-            MySecurityUtil.handleExceptionResponse(response, "Authorization Fail", HttpServletResponse.SC_BAD_REQUEST);
+            MySecurityUtil.handleExceptionResponse(response, request, "Authorization Fail",
+                    HttpServletResponse.SC_BAD_REQUEST);
         });
 
         http.cors().configurationSource(configurationSource())
@@ -57,7 +57,7 @@ public class MySecurityConfig {
                 .csrf().disable()
                 .formLogin().disable()
                 .httpBasic().disable()
-//                .headers().frameOptions().disable() // h2 개발용도
+                // .headers().frameOptions().disable() // h2 개발용도
 
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
@@ -72,7 +72,9 @@ public class MySecurityConfig {
 
     public CorsConfigurationSource configurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("http://localhost");
         configuration.addAllowedOrigin("http://localhost:3000");
+        configuration.addAllowedOrigin("http://15.165.105.232"); // 환경변수 + gitignore
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         configuration.setAllowCredentials(true);
