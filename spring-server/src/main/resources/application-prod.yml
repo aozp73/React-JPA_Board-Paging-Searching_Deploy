@@ -7,7 +7,7 @@ server:
 
 spring:
   redis: # jwt refresh token 저장
-    host: localhost
+    host: database-redis
     port: 6379
   output:
     ansi:

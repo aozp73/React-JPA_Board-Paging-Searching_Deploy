@@ -1,14 +1,28 @@
-FROM node:14-alpine
+FROM node:alpine as build
+WORKDIR /app
+COPY package.json /app
+RUN npm install --silent
+COPY . /app
+RUN npm run build
 
-WORKDIR /home/node/app
+FROM nginx
+COPY --from=build  /app/build /usr/share/nginx/html
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
-COPY package*.json ./
 
-RUN npm cache clean --force
-RUN npm install
+### node Server ###
+# FROM node:14-alpine
 
-COPY . .
+# WORKDIR /home/node/app
 
-EXPOSE 3000
+# COPY package*.json ./
 
-CMD ["npm", "start"]
+# RUN npm cache clean --force
+# RUN npm install
+
+# COPY . .
+
+# EXPOSE 3000
+
+# CMD ["npm", "start"]

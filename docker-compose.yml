@@ -7,7 +7,6 @@ services:
       - 6379:6379
     volumes:
       - ./redis/data:/data
-      - ./redis/conf/redis.conf:/usr/local/conf/redis.conf
     labels:
       - "name=redis"
       - "mode=standalone"
@@ -16,10 +15,12 @@ services:
       - network
 
   database-mysql:
+    container_name: database-mysql
+    depends_on:
+      - database-redis
     build:
       context: ./database/mysql
       dockerfile: Dockerfile
-    container_name: database-mysql
     image: ${DOCKERHUB_USERNAME}/react-toy-db-mysql:${TAG_VERSION}
     volumes:
       - ./db/mysql/store:/var/lib/mysql
@@ -29,23 +30,22 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
     ports:
-      - "3306:3306"
+      - "3307:3306"
     restart: always
-    depends_on:
-      - database-redis
     networks:
       - network
 
-  spring_app:
+  spring-app:
+    container_name: spring_app
+    depends_on:
+      - database-mysql
     build:
       context: ./spring-server
       dockerfile: Dockerfile
-    container_name: spring_app
     image: ${DOCKERHUB_USERNAME}/react-toy-server-spring:${TAG_VERSION}
     ports:
       - "8080:8080"
-    depends_on:
-      - database-mysql
+    restart: always
     environment:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
@@ -56,18 +56,33 @@ services:
     networks:
       - network
 
-  react_app:
+  nginx-react-app:
+    container_name: "nginx-react-app"
+    depends_on:
+      - spring-app
     build:
       context: ./react-client
       dockerfile: Dockerfile
-    container_name: "react_app"
+    restart: always
     image: ${DOCKERHUB_USERNAME}/react-toy-client-react:${TAG_VERSION}
     ports:
-      - "3000:3000"
-    depends_on:
-      - spring_app
+      - 80:80
     networks:
       - network
+
+  # react-app:
+  #   container_name: "react-app"
+  #   depends_on:
+  #     - spring-app
+  #   build:
+  #     context: ./react-client
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   image: ${DOCKERHUB_USERNAME}/react-toy-client-react:${TAG_VERSION}
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - network
 
 networks:
   network:
