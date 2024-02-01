@@ -1,28 +1,26 @@
 # React / JPA
+<div align="center">
+        <img width="60%" src="https://github.com/aozp73/React-JPA_Board-Paging-Searching_Deploy/assets/122352251/caf41e0a-f1ad-4695-a709-6f467be48486"/>
+</div>
 
+<br> <br>
+&nbsp; ※ 기능 <br>
 &nbsp; - 페이징, 검색 <br>
 &nbsp; - 유저 (등록, 조회) / 게시글 (등록, 조회, 수정, 삭제) / 댓글 (등록, 조회, 수정, 삭제) <br><br>
 
-&nbsp; ※ Backend <br>
+&nbsp; ※ 적용 기술 <br>
+&nbsp; 1. Backend <br>
 &nbsp; - JWT + SpringSecurity (accessToken, refreshToken / 인증 path 관리) <br>
-&nbsp; - QueryDSL (게시글 검색) <br><br>
+&nbsp; - QueryDSL (게시글 검색) <br>
 
-&nbsp; ※ Frontend <br>
+&nbsp; 2. Frontend <br>
 &nbsp; - axios (통신 / Interceptor - Jwt Token 공통 처리) <br>
 &nbsp; - redux-persist, 로컬 스토리지 (유저 정보 / accessToken) <br>
-&nbsp; - Cookie (refreshToken) <br><br>
+&nbsp; - Cookie (refreshToken) <br>
 
-&nbsp; ※ DevOps <br>
+&nbsp; 3. DevOps <br>
 &nbsp; - Docker Compose / Git Actions CICD 스크립트 <br>
-&nbsp; - AWS EC2 <br> <br> <br>
-
-<div align="center">
-        <img width="100%" src="https://github.com/aozp73/Js-Mybatis_Board-Paging-Searching/assets/122352251/a2906d77-951c-41af-a72d-d75d81499577"/>
-</div>
-<br> <br> <br> <br>
-<div align="center">
-        <img width="90%" src="https://github.com/aozp73/Js-Mybatis_Board-Paging-Searching/assets/122352251/3d66ec7f-6190-4f98-92a2-978caa6a9ebc"/>
-</div>
+&nbsp; - AWS EC2 <br>
 
 <br> <br>
 
@@ -161,7 +159,7 @@
     </td>
     <td>
       <div align="center"> 
-        <img width="50%" src="https://github.com/aozp73/Js-JPA_Board-Paging-Searching/assets/122352251/a657b24a-6c91-4ff7-a4cc-9e16fe0ca56a"/>
+        <img width="40%" src="https://github.com/aozp73/Js-JPA_Board-Paging-Searching/assets/122352251/a657b24a-6c91-4ff7-a4cc-9e16fe0ca56a"/>
       </div>
     </td>
   </tr>
