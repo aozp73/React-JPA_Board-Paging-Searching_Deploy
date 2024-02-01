@@ -74,7 +74,6 @@ public class MySecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("http://localhost");
         configuration.addAllowedOrigin("http://localhost:3000");
-        configuration.addAllowedOrigin("http://15.165.105.232"); // 환경변수 + gitignore
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         configuration.setAllowCredentials(true);

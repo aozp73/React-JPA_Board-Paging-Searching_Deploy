@@ -22,7 +22,7 @@ public class MyJwtProvider {
     private final byte[] accessSecret;
     private final byte[] refreshSecret;
 
-    public final static Long ACCESS_TOKEN_EXPIRE_COUNT = 60 * 60 * 1000L; // 1시간
+    public final static Long ACCESS_TOKEN_EXPIRE_COUNT = 10 * 1000L; // 1시간
     public final static Long REFRESH_TOKEN_EXPIRE_COUNT = 7 * 24 * 60 * 60 * 1000L; // 1주일
 
     public MyJwtProvider(MyJwtSource myJwtSource) {
@@ -37,6 +37,7 @@ public class MyJwtProvider {
         return createToken(userEntity.getId(), userEntity.getEmail(), userEntity.getUsername(),
                 userEntity.getRole().toString(), ACCESS_TOKEN_EXPIRE_COUNT, accessSecret);
     }
+
     public String createRefreshToken(User userEntity) {
         // 현재 아키텍쳐에선 사용자 정보 활용 x
         return createToken(userEntity.getId(), userEntity.getEmail(), userEntity.getUsername(),
@@ -44,7 +45,7 @@ public class MyJwtProvider {
     }
 
     private String createToken(Long id, String email, String username, String role,
-                               Long expire, byte[] secretKey) {
+            Long expire, byte[] secretKey) {
         Claims claims = Jwts.claims().setSubject(email);
         claims.put("userId", id);
         claims.put("username", username);
@@ -109,7 +110,6 @@ public class MyJwtProvider {
 
         return refreshTokenValue;
     }
-
 
     /**
      * JWT 토큰 검증

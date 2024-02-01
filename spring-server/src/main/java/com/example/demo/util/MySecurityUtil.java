@@ -36,12 +36,12 @@ public class MySecurityUtil {
          * - 이렇게 해야 제대로 된 응답을 받고,
          * AccessToken이 만료되었을 경우엔 Client가 RefreshToken을 포함한 요청을 이어갈 수 있다.
          */
-        String[] hosts = { "http://localhost", "http://localhost:3030", "http://15.165.105.232" };
+        String[] hosts = { "http://localhost", "http://localhost:3030" };
         String origin = request.getHeader("Origin");
+        log.debug("origin = {}", origin); // nginx는 필요 없음 / nginx의 경우 localhost가 아닌 ip로 요청
         if (PatternMatchUtils.simpleMatch(hosts, origin)) {
             response.setHeader("Access-Control-Allow-Origin", origin);
         }
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost");
         response.setHeader("Access-Control-Allow-Credentials", "true");
 
         response.getWriter().write(om.writeValueAsString(errorResponse));

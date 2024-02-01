@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { store } from "../../auth/store";
-import api from "../../auth/authInterceptor";
 import apiOptional from "../../auth/authOptionalInterceptor";
 import BoardDetailItem from "../../components/board/boarddetail/BoardDetailItem";
 import CommentItem from "../../components/board/boarddetail/CommentItem";
