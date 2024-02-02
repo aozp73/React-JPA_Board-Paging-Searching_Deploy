@@ -22,7 +22,7 @@ public class MyJwtProvider {
     private final byte[] accessSecret;
     private final byte[] refreshSecret;
 
-    public final static Long ACCESS_TOKEN_EXPIRE_COUNT = 10 * 1000L; // 1시간
+    public final static Long ACCESS_TOKEN_EXPIRE_COUNT = 2 * 60 * 60 * 1000L; // 2시간
     public final static Long REFRESH_TOKEN_EXPIRE_COUNT = 7 * 24 * 60 * 60 * 1000L; // 1주일
 
     public MyJwtProvider(MyJwtSource myJwtSource) {
