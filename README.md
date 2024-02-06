@@ -50,6 +50,19 @@
 
 <br> <br>
 
+## 기술 블로그
+<br>
+
+프로젝트 세팅 <br>
+&nbsp;- [Spring](https://blog.naver.com/aozp73/223346190402) <br>
+&nbsp;- [React](https://blog.naver.com/aozp73/223346255571) <br>
+
+Spring Test <br>
+&nbsp;- [JUnit / Integration](https://blog.naver.com/aozp73/223346330593) <br>
+&nbsp;- [Test Containers](https://blog.naver.com/aozp73/223346339732) <br>
+
+<br>
+
 
 ## View / 소스코드
 
