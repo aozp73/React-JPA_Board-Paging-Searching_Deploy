@@ -56,10 +56,17 @@
 프로젝트 세팅 <br>
 &nbsp;- [Spring](https://blog.naver.com/aozp73/223346190402) <br>
 &nbsp;- [React](https://blog.naver.com/aozp73/223346255571) <br>
-
-Spring Test <br>
+<br> <br>
+Spring <br>
 &nbsp;- [JUnit / Integration](https://blog.naver.com/aozp73/223346330593) <br>
 &nbsp;- [Test Containers](https://blog.naver.com/aozp73/223346339732) <br>
+&nbsp;- [Rest Docs](https://blog.naver.com/aozp73/223347048609) <br> 
+<br>
+&nbsp;- [@Valid, @ExceptionHandler / ConstraintValidator](https://blog.naver.com/aozp73/223347102065) <br>
+&nbsp;- [@ConfigurationProperties](https://blog.naver.com/aozp73/223347152716) <br>
+<br> <br>
+React + Spring 로직 <br>
+&nbsp;- [회원가입](https://blog.naver.com/aozp73/223347181964) <br>
 
 <br>
 
