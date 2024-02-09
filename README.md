@@ -68,9 +68,13 @@ Spring <br>
 React + Spring 로직 <br>
 &nbsp;- [회원가입](https://blog.naver.com/aozp73/223347181964) <br>
 &nbsp;- [로그인 / access, refreshToken](https://blog.naver.com/aozp73/223347181964) <br>
+<br>
 &nbsp;- [게시글 목록조회](https://blog.naver.com/aozp73/223348287806) <br>
 &nbsp;- [게시글 작성 / 수정 / 삭제](https://blog.naver.com/aozp73/223348318633) <br>
 &nbsp;- [게시글, 댓글 상세조회](https://blog.naver.com/aozp73/223348340010) <br>
+<br>
+&nbsp;- [댓글 작성](https://blog.naver.com/aozp73/223348935675) <br>
+&nbsp;- [댓글 수정 / 삭제](https://blog.naver.com/aozp73/223349011784) <br>
 
 
 <br>
