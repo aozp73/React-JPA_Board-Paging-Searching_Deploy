@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class CommentList_OutDTO {
 
     private Long commentId;
+    private Long uniqueKey;
     private String content;
     private Boolean editable;
     private String createdAt;
@@ -28,6 +29,7 @@ public class CommentList_OutDTO {
 
     public CommentList_OutDTO(CommentListFlatDTO commentListFlatDTO) {
        this.commentId = commentListFlatDTO.getId();
+       this.uniqueKey = commentId;
        this.content = commentListFlatDTO.getContent();
 
        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
@@ -41,6 +43,7 @@ public class CommentList_OutDTO {
 
     public CommentList_OutDTO(CommentListFlatDTO commentListFlatDTO, Long userId) {
        this.commentId = commentListFlatDTO.getId();
+       this.uniqueKey = commentId;
        this.content = commentListFlatDTO.getContent();
 
        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
